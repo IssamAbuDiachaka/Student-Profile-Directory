@@ -1,0 +1,189 @@
+.profile-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 1.75rem 1.5rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #e8ecf0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.profile-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(90, 103, 216, 0.1);
+}
+
+/* Inactive cards are softened */
+.profile-card--inactive {
+  background: #fafafa;
+  border-color: #edf0f3;
+  box-shadow: none;
+}
+
+.profile-card--inactive .profile-card__name,
+.profile-card--inactive .profile-card__track,
+.profile-card--inactive .profile-card__bio {
+  color: #a0aec0;
+}
+
+/* ── Avatar ── */
+.profile-card__avatar {
+  width: 62px;
+  height: 62px;
+  border-radius: 50%;
+  background: #eef0fd;
+  color: #5a67d8;
+  font-size: 1.6rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+  flex-shrink: 0;
+  border: 2px solid #c3c9f5;
+}
+
+.profile-card--inactive .profile-card__avatar {
+  background: #f0f0f0;
+  color: #b0b8c1;
+  border-color: #dde1e7;
+}
+
+/* ── Body ── */
+.profile-card__body {
+  flex: 1;
+  width: 100%;
+}
+
+.profile-card__name {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1a202c;
+  margin: 0 0 0.2rem 0;
+}
+
+.profile-card__track {
+  font-size: 0.78rem;
+  color: #5a67d8;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  margin: 0 0 0.8rem 0;
+}
+
+.profile-card__bio {
+  font-size: 0.875rem;
+  color: #4a5568;
+  line-height: 1.6;
+  margin: 0 0 1.1rem 0;
+}
+
+/* Meta row: skill badge + status  */
+.profile-card__meta {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+.profile-card__skill {
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 0.22rem 0.65rem;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+/* Skill level colors — light tinted backgrounds */
+.skill--beginner {
+  background: #e6ffed;
+  color: #276749;
+}
+
+.skill--intermediate {
+  background: #fffbeb;
+  color: #b7791f;
+}
+
+.skill--advanced {
+  background: #fff5f5;
+  color: #c53030;
+}
+
+.profile-card__status {
+  font-size: 0.8rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.profile-card__status--active {
+  color: #38a169;
+}
+
+.profile-card__status--inactive {
+  color: #a0aec0;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+}
+
+.status-dot--active {
+  background: #38a169;
+}
+
+.status-dot--inactive {
+  background: #cbd5e0;
+}
+
+/* Toggle button*/
+.profile-card__btn {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  border: 1.5px solid transparent;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
+}
+
+.profile-card__btn--deactivate {
+  background: #fff5f5;
+  color: #e53e3e;
+  border-color: #fed7d7;
+}
+
+.profile-card__btn--deactivate:hover {
+  background: #e53e3e;
+  color: #fff;
+  border-color: #e53e3e;
+}
+
+.profile-card__btn--activate {
+  background: #f0fff4;
+  color: #38a169;
+  border-color: #c6f6d5;
+}
+
+.profile-card__btn--activate:hover {
+  background: #38a169;
+  color: #fff;
+  border-color: #38a169;
+}
+
+.profile-card__btn:active {
+  transform: scale(0.98);
+}
