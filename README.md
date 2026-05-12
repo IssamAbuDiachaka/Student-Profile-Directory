@@ -1,70 +1,164 @@
-# Getting Started with Create React App
+# Student Profile Directory
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A React application that displays a directory of student profiles. Each profile shows the student's name, track, bio, skill level, and active status — with a button to toggle that status in real time.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+- View student profiles in a responsive card grid
+- Toggle each student between **Active** and **Inactive**
+- Color-coded skill level badges (Beginner / Intermediate / Advanced)
+- Inactive cards are visually dimmed for quick scanning
+- Clean, consistent UI with hover effects
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+---
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Tech Stack
+- **React** (with Hooks)
+- **CSS Modules** (per-component stylesheets)
+- Bootstrapped with [Create React App](https://github.com/facebook/create-react-app)
 
-### `npm test`
+---
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Project Structure
 
-### `npm run build`
+```
+src/
+├── App.js                  # Root component — holds state and student data
+├── App.css                 # Global styles and layout
+└── components/
+    ├── Header.js           # App title and subtitle
+    ├── Header.css
+    ├── ProfileList.js      # Maps student array → ProfileCard components
+    ├── ProfileList.css
+    ├── ProfileCard.js      # Individual student card with toggle button
+    ├── ProfileCard.css
+    ├── Footer.js           # Displays total student count
+    └── Footer.css
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Component Overview
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### `App`
+The root component. Owns all state and data.
 
-### `npm run eject`
+- Stores the student array in `useState`
+- Defines `toggleActive(id)` — flips a student's `isActive` field
+- Passes data and the toggle function down via props
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### `Header`
+Purely presentational. Renders the app title and a short subtitle.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### `ProfileList`
+Receives the `students` array and `onToggle` function as props.  
+Uses `.map()` to render one `ProfileCard` per student. Never hardcodes cards manually.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### `ProfileCard`
+Receives a single `student` object and the `onToggle` function as props.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Displays: name, track, bio, skill level badge, and status
+- Uses **conditional rendering** to show "Active" or "Inactive"
+- The button label switches between "Activate" and "Deactivate" based on `isActive`
+- Calls `onToggle(id)` when the button is clicked
 
-## Learn More
+### `Footer`
+Receives `totalStudents` as a prop and displays the count.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## State Management
 
-### Code Splitting
+State lives entirely in `App.js`:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```js
+const [students, setStudents] = useState(initialStudents);
+```
 
-### Analyzing the Bundle Size
+The toggle function updates only the targeted student, leaving the rest unchanged:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```js
+function toggleActive(id) {
+  setStudents((prevStudents) =>
+    prevStudents.map((student) =>
+      student.id === id
+        ? { ...student, isActive: !student.isActive }
+        : student
+    )
+  );
+}
+```
 
-### Making a Progressive Web App
+This function is passed down as a prop through `ProfileList` to `ProfileCard`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+---
 
-### Advanced Configuration
+## Student Data Shape
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+Each student object follows this structure:
 
-### Deployment
+```js
+{
+  id: 1,
+  name: "Amina",
+  track: "Frontend Development",
+  bio: "Passionate about building accessible user interfaces with React.",
+  skillLevel: "Beginner",   // "Beginner" | "Intermediate" | "Advanced"
+  isActive: true,
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+The app ships with **7 students**, each with unique data.
 
-### `npm run build` fails to minify
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Getting Started
+
+### Prerequisites
+
+- [Node.js](https://nodejs.org/) v14 or higher
+- npm (comes with Node)
+
+### Installation
+
+```bash
+# Clone the repository
+git clone <your-repo-url>
+
+# Navigate into the project folder
+cd student-directory
+
+# Install dependencies
+npm install
+```
+
+### Running the App
+
+```bash
+npm start
+```
+
+Opens at [http://localhost:3000](http://localhost:3000). The page reloads automatically on file changes.
+
+### Building for Production
+
+```bash
+npm run build
+```
+
+Outputs an optimized bundle to the `build/` folder.
+
+---
+
+## Key React Concepts Demonstrated
+
+| Concept | Where it's used |
+|---|---|
+| `useState` | `App.js` — manages the student array |
+| Props | Data flows from `App` → `ProfileList` → `ProfileCard` |
+| `.map()` rendering | `ProfileList.js` — renders cards dynamically |
+| Conditional rendering | `ProfileCard.js` — status label and button text |
+| Lifting state up | Toggle function defined in `App`, passed down to cards |
+| Component reusability | `ProfileCard` is reused for every student |
