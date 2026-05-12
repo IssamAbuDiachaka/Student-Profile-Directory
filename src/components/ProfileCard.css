@@ -1,4 +1,5 @@
-.profile-card {
+/* ── Card container ── */
+.card {
   background: #ffffff;
   border-radius: 14px;
   padding: 1.75rem 1.5rem 1.5rem;
@@ -11,26 +12,26 @@
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.profile-card:hover {
+.card:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 24px rgba(90, 103, 216, 0.1);
 }
 
-/* Inactive cards are softened */
-.profile-card--inactive {
+/* Inactive cards are visually softened */
+.card.inactive {
   background: #fafafa;
   border-color: #edf0f3;
   box-shadow: none;
 }
 
-.profile-card--inactive .profile-card__name,
-.profile-card--inactive .profile-card__track,
-.profile-card--inactive .profile-card__bio {
+.card.inactive .name,
+.card.inactive .track,
+.card.inactive .bio {
   color: #a0aec0;
 }
 
-/* ── Avatar ── */
-.profile-card__avatar {
+/* ── Avatar circle ── */
+.avatar {
   width: 62px;
   height: 62px;
   border-radius: 50%;
@@ -46,26 +47,26 @@
   border: 2px solid #c3c9f5;
 }
 
-.profile-card--inactive .profile-card__avatar {
+.card.inactive .avatar {
   background: #f0f0f0;
   color: #b0b8c1;
   border-color: #dde1e7;
 }
 
-/* ── Body ── */
-.profile-card__body {
+/* ── Student info ── */
+.info {
   flex: 1;
   width: 100%;
 }
 
-.profile-card__name {
+.name {
   font-size: 1.1rem;
   font-weight: 700;
   color: #1a202c;
   margin: 0 0 0.2rem 0;
 }
 
-.profile-card__track {
+.track {
   font-size: 0.78rem;
   color: #5a67d8;
   font-weight: 600;
@@ -74,15 +75,15 @@
   margin: 0 0 0.8rem 0;
 }
 
-.profile-card__bio {
+.bio {
   font-size: 0.875rem;
   color: #4a5568;
   line-height: 1.6;
   margin: 0 0 1.1rem 0;
 }
 
-/* Meta row: skill badge + status  */
-.profile-card__meta {
+/* ── Meta row: skill badge + status ── */
+.meta {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -91,7 +92,8 @@
   margin-bottom: 1.25rem;
 }
 
-.profile-card__skill {
+/* Skill level badge */
+.badge {
   font-size: 0.72rem;
   font-weight: 600;
   padding: 0.22rem 0.65rem;
@@ -100,23 +102,12 @@
   letter-spacing: 0.4px;
 }
 
-/* Skill level colors — light tinted backgrounds */
-.skill--beginner {
-  background: #e6ffed;
-  color: #276749;
-}
+.badge.beginner     { background: #e6ffed; color: #276749; }
+.badge.intermediate { background: #fffbeb; color: #b7791f; }
+.badge.advanced     { background: #fff5f5; color: #c53030; }
 
-.skill--intermediate {
-  background: #fffbeb;
-  color: #b7791f;
-}
-
-.skill--advanced {
-  background: #fff5f5;
-  color: #c53030;
-}
-
-.profile-card__status {
+/* Status label */
+.status {
   font-size: 0.8rem;
   font-weight: 600;
   display: flex;
@@ -124,15 +115,11 @@
   gap: 0.3rem;
 }
 
-.profile-card__status--active {
-  color: #38a169;
-}
+.status.active   { color: #38a169; }
+.status.inactive { color: #a0aec0; }
 
-.profile-card__status--inactive {
-  color: #a0aec0;
-}
-
-.status-dot {
+/* Status indicator dot */
+.dot {
   width: 7px;
   height: 7px;
   border-radius: 50%;
@@ -140,16 +127,11 @@
   flex-shrink: 0;
 }
 
-.status-dot--active {
-  background: #38a169;
-}
+.dot.active   { background: #38a169; }
+.dot.inactive { background: #cbd5e0; }
 
-.status-dot--inactive {
-  background: #cbd5e0;
-}
-
-/* Toggle button*/
-.profile-card__btn {
+/* ── Toggle button ── */
+.btn {
   width: 100%;
   padding: 0.6rem 1rem;
   border: 1.5px solid transparent;
@@ -160,30 +142,28 @@
   transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease;
 }
 
-.profile-card__btn--deactivate {
+.btn:active { transform: scale(0.98); }
+
+.btn.deactivate {
   background: #fff5f5;
   color: #e53e3e;
   border-color: #fed7d7;
 }
 
-.profile-card__btn--deactivate:hover {
+.btn.deactivate:hover {
   background: #e53e3e;
-  color: #fff;
+  color: #ffffff;
   border-color: #e53e3e;
 }
 
-.profile-card__btn--activate {
+.btn.activate {
   background: #f0fff4;
   color: #38a169;
   border-color: #c6f6d5;
 }
 
-.profile-card__btn--activate:hover {
+.btn.activate:hover {
   background: #38a169;
-  color: #fff;
+  color: #ffffff;
   border-color: #38a169;
-}
-
-.profile-card__btn:active {
-  transform: scale(0.98);
 }

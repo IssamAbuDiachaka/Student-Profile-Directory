@@ -1,53 +1,53 @@
 import React from "react";
 import "./ProfileCard.css";
 
-// Maps skill level to a CSS class for light-tinted badge styling
-const skillClass = {
-  Beginner: "skill--beginner",
-  Intermediate: "skill--intermediate",
-  Advanced: "skill--advanced",
+// Maps skill level string to a CSS modifier class
+const skillBadgeClass = {
+  Beginner: "beginner",
+  Intermediate: "intermediate",
+  Advanced: "advanced",
 };
 
 function ProfileCard({ student, onToggle }) {
   const { id, name, track, bio, skillLevel, isActive } = student;
 
   return (
-    <div className={`profile-card ${isActive ? "profile-card--active" : "profile-card--inactive"}`}>
+    <div className={`card ${isActive ? "" : "inactive"}`}>
 
-      {/* Avatar — shows first letter of the student's name */}
-      <div className="profile-card__avatar">
+      {/* Avatar — first letter of the student's name */}
+      <div className="avatar">
         {name.charAt(0).toUpperCase()}
       </div>
 
-      <div className="profile-card__body">
-        <h2 className="profile-card__name">{name}</h2>
-        <p className="profile-card__track">{track}</p>
-        <p className="profile-card__bio">{bio}</p>
+      <div className="info">
+        <h2 className="name">{name}</h2>
+        <p className="track">{track}</p>
+        <p className="bio">{bio}</p>
 
-        <div className="profile-card__meta">
+        <div className="meta">
           {/* Skill level badge */}
-          <span className={`profile-card__skill ${skillClass[skillLevel] || ""}`}>
+          <span className={`badge ${skillBadgeClass[skillLevel]}`}>
             {skillLevel}
           </span>
 
-          {/* Conditional rendering — Active or Inactive status */}
+          {/* Conditional rendering — Active or Inactive */}
           {isActive ? (
-            <span className="profile-card__status profile-card__status--active">
-              <span className="status-dot status-dot--active" />
+            <span className="status active">
+              <span className="dot active" />
               Active
             </span>
           ) : (
-            <span className="profile-card__status profile-card__status--inactive">
-              <span className="status-dot status-dot--inactive" />
+            <span className="status inactive">
+              <span className="dot inactive" />
               Inactive
             </span>
           )}
         </div>
       </div>
 
-      {/* Button triggers the toggle function passed from the parent */}
+      {/* Button — calls the toggle function passed from the parent */}
       <button
-        className={`profile-card__btn ${isActive ? "profile-card__btn--deactivate" : "profile-card__btn--activate"}`}
+        className={`btn ${isActive ? "deactivate" : "activate"}`}
         onClick={() => onToggle(id)}
       >
         {isActive ? "Deactivate" : "Activate"}

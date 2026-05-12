@@ -4,10 +4,10 @@ import "./Footer.css";
 function Footer({ totalStudents }) {
   return (
     <footer className="footer">
-      <p className="footer__text">
-        Total Students: <span className="footer__count">{totalStudents}</span>
+      <p className="total">
+        Total Students: <span className="count">{totalStudents}</span>
       </p>
-      <p className="footer__copy">© 2026 Student Profile Directory</p>
+      <p className="copy">© 2026 Student Profile Directory</p>
     </footer>
   );
 }
